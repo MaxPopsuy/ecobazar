@@ -4,7 +4,7 @@ import Select from "react-select";
 import { NavLink } from "react-router-dom";
 import "@styles/App.css";
 import classnames from "classnames";
-import { success } from "@pnotify/core";
+import { alert, success } from "@pnotify/core";
 
 const options = [
   { value: "eng", label: "🇬🇧 Eng" },
@@ -21,7 +21,7 @@ const currencyOptions = [
 const Header = () => {
   const copyHandler = () => {
     navigator.clipboard.writeText("(219) 555-0114");
-    success({title: "Success!", text: "Number copied to clipboard"})
+    alert({text: "Copied to clipboard"})
   };
 
   return (
@@ -77,7 +77,52 @@ const Header = () => {
               },
             })}
           />
+          <Select
+            defaultValue={{ value: "usd", label: "USD" }}
+            options={currencyOptions}
+            styles={{
+              option: (styles, state) => ({
+                ...styles,
+                cursor: "pointer",
+                // backgroundColor: "transparent"
+              }),
+              control: (styles) => ({
+                ...styles,
+                cursor: "pointer",
+                backgroundColor: "transparent",
+                border: "none",
+                // backgroundColor: "transparent"
+              }),
+              dropdownIndicator: (provided) => ({
+                ...provided,
+                svg: {
+                  fill: "#2B572E",
+                },
+              }),
+              indicatorSeparator: (provided) => ({
+                ...provided,
+                span: {
+                  backgroundColor: "#2B572E",
+                },
+              }),
+            }}
+            classNames={{
+              control: (state) =>
+                state.isFocused ? "test testactive" : "test",
+            }}
+            theme={(theme) => ({
+              ...theme,
+              // borderRadius: "25px",
 
+              colors: {
+                ...theme.colors,
+                text: "#ffffff ",
+                primary25: "#84d197 ",
+                primary: "#2B572E ",
+                primary50: "#ffffff",
+              },
+            })}
+          />
           <div>USD</div>
         </div>
       </div>
