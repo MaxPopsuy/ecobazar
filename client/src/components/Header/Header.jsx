@@ -123,7 +123,6 @@ const Header = () => {
               },
             })}
           />
-          <div>USD</div>
         </div>
       </div>
       <div className={styles["header__bottombar"]}>
